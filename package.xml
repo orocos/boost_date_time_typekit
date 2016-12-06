@@ -1,0 +1,22 @@
+<package>
+  <name>boost_date_time_typekit</name>
+  <version>0.0.1</version>
+  <description>This package contains the Boost date and time RTT bindings</description>
+  <maintainer email="info@intermodalics.eu">Intermodalics BVBA</maintainer>
+
+  <license>LGPL / BSD</license>
+
+  <author email="luca@intermodalics.eu">Luca Magnabosco</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this pacakge. -->
+  <build_depend>rtt</build_depend>
+  <build_depend>ocl</build_depend>
+  <!--  <build_depend>orocos_kdl</build_depend>  -->
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>rtt</run_depend>
+  <run_depend>ocl</run_depend>
+
+</package>
