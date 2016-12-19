@@ -8,8 +8,16 @@ find_package(OROCOS-RTT REQUIRED)
 include(${OROCOS-RTT_USE_FILE_PATH}/UseOROCOS-RTT.cmake)
 
 find_package(Boost REQUIRED COMPONENTS date_time)
-include_directories(${Boost_INCLUDE_DIRS})
-link_directories(${Boost_LIBRARY_DIRS})
+
+include_directories(
+  include/orocos
+  ${Boost_INCLUDE_DIRS}
+)
+
+link_directories(
+  include/orocos
+  ${Boost_LIBRARY_DIRS}
+)
 
 orocos_typekit(${PROJECT_NAME}
   src/boostDateTimeTypekit.cpp
@@ -18,11 +26,14 @@ orocos_typekit(${PROJECT_NAME}
   src/boostDateTimeTypekitTimeDuration.cpp
   )
 
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+target_link_libraries(
+  ${PROJECT_NAME} 
+  ${Boost_LIBRARIES}
+)
 
-install(
-  FILES src/boostDateTimeTypekitTypes.hpp
-  DESTINATION include/orocos/boost_date_time_typekit/typekit
+orocos_install_headers(
+  FILES include/orocos/${PROJECT_NAME}/typekit/Types.hpp
+  DESTINATION include/orocos/${PROJECT_NAME}/typekit
   RENAME Types.hpp
 )
 
