@@ -31,7 +31,7 @@ target_link_libraries(
   ${Boost_LIBRARIES}
 )
 
-orocos_install_headers(
+install(
   FILES include/orocos/${PROJECT_NAME}/typekit/Types.hpp
   DESTINATION include/orocos/${PROJECT_NAME}/typekit
   RENAME Types.hpp
