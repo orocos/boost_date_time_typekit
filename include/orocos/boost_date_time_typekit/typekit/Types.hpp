@@ -3,6 +3,9 @@
 #ifndef BOOST_DATE_TIME_TYPES_HPP
 #define BOOST_DATE_TIME_TYPES_HPP
 
+// include <rtt/config.h> first, as it might define BOOST_DATE_TIME_POSIX_TIME_STD_CONFIG
+#include <rtt/rtt-config.h>
+
 #include <boost/date_time/posix_time/posix_time.hpp>
 
 // This is a hack. We include it unconditionally as it may be required by some
