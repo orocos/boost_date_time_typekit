@@ -36,7 +36,7 @@
 #ifndef ORO_BOOST_DATE_TIME_TYPEKIT_HPP
 #define ORO_BOOST_DATE_TIME_TYPEKIT_HPP
 
-#include "boostDateTimeTypekitTypes.hpp"
+#include <boost_date_time_typekit/typekit/Types.hpp>
 
 #include <rtt/types/TypekitPlugin.hpp>
 
