@@ -9,8 +9,6 @@ include(${OROCOS-RTT_USE_FILE_PATH}/UseOROCOS-RTT.cmake)
 
 find_package(Boost REQUIRED COMPONENTS date_time)
 
-ADD_DEFINITIONS(-DBOOST_DATE_TIME_POSIX_TIME_STD_CONFIG)
-
 include_directories(
   include/orocos
   ${Boost_INCLUDE_DIRS}
