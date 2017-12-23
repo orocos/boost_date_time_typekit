@@ -82,25 +82,25 @@ int getSeconds(const ptime &time) {
 }
 
 unsigned long long getTotalSeconds(const ptime &time) {
-    const ptime epoch = from_time_t(0);  // Unix start time
+    static const ptime epoch = from_time_t(0);  // Unix start time
     boost::posix_time::time_duration timeFromEpoch = time - epoch;
     return timeFromEpoch.total_seconds();
 }
 
 unsigned long long getTotalMilliseconds(const ptime &time) {
-    const ptime epoch = from_time_t(0);  // Unix start time
+    static const ptime epoch = from_time_t(0);  // Unix start time
     boost::posix_time::time_duration timeFromEpoch = time - epoch;
     return timeFromEpoch.total_milliseconds();
 }
 
 unsigned long long getTotalMicroseconds(const ptime &time) {
-    const ptime epoch = from_time_t(0);  // Unix start time
+    static const ptime epoch = from_time_t(0);  // Unix start time
     boost::posix_time::time_duration timeFromEpoch = time - epoch;
     return timeFromEpoch.total_microseconds();
 }
 
 unsigned long long getTotalNanoseconds(const ptime &time) {
-    const ptime epoch = from_time_t(0);  // Unix start time
+    static const ptime epoch = from_time_t(0);  // Unix start time
     boost::posix_time::time_duration timeFromEpoch = time - epoch;
     return timeFromEpoch.total_nanoseconds();
 }
