@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 2.8.3)
 
 project(boost_date_time_typekit)
 
+# DO build and override the new transport in boost_date_time_typekit
+SET(ENABLE_CORBA ON CACHE BOOL "" FORCE)
+
 # Defines the orocos_* cmake macros. See that file for additional
 # documentation.
 find_package(OROCOS-RTT REQUIRED)
