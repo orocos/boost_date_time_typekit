@@ -37,4 +37,13 @@ install(
   RENAME Types.hpp
 )
 
+if(ENABLE_CORBA AND OROCOS-RTT_CORBA_FOUND)
+  add_subdirectory(src/corba)
+endif()
+
 orocos_generate_package()
+
+include(CTest)
+if(BUILD_TESTING)
+  add_subdirectory(test)
+endif()

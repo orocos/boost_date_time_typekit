@@ -29,46 +29,46 @@
 *                                                                             *
 *******************************************************************************/
 
-#include "boostDateTimeTypekit.hpp"
-#include "boostDateTimeTypekitSpecialValues.hpp"
-#include "boostDateTimeTypekitPtime.hpp"
-#include "boostDateTimeTypekitTimeDuration.hpp"
+#include <rtt/transports/corba/CorbaTemplateProtocol.hpp>
+#include <rtt/types/TypekitPlugin.hpp>
+
+#include <boost_date_time_typekit/transports/corba/BoostDateTimeCorbaConversion.hpp>
+
+using namespace RTT;
+using namespace RTT::types;
+using namespace RTT::corba;
+
+#include <rtt/types/TransportPlugin.hpp>
 
 namespace boost_date_time_typekit {
-std::string BoostDateTimeTypekitPlugin::getName() {
-    return "boost-date_time";
+
+    namespace corba {
+
+        struct BoostDateTimeCorbaTransportPlugin : public RTT::types::TransportPlugin
+        {
+            bool registerTransport(std::string name, RTT::types::TypeInfo* ti)
+            {
+                if ( name == "boost.posix_time.ptime" )
+                    return ti->addProtocol(ORO_CORBA_PROTOCOL_ID, new CorbaTemplateProtocol< boost::posix_time::ptime >() );
+                if ( name == "boost.posix_time.time_duration" )
+                    return ti->addProtocol(ORO_CORBA_PROTOCOL_ID, new CorbaTemplateProtocol< boost::posix_time::time_duration >() );
+                return false;
+            }
+
+            std::string getTransportName() const {
+                return "CORBA";
+            }
+
+            std::string getName() const {
+                return "boost-date_time-transport-corba";
+            }
+
+            std::string getTypekitName() const {
+                return "boost-date_time";
+            }
+        };
+
+    }
 }
 
-bool BoostDateTimeTypekitPlugin::loadTypes() {
-    loadSpecialValuesTypes();
-    loadPtimeTypes();
-    loadTimeDurationTypes();
-    return true;
-}
-
-bool BoostDateTimeTypekitPlugin::loadConstructors() {
-    loadPtimeConstructors();
-    loadTimeDurationConstructors();
-    return true;
-}
-
-bool BoostDateTimeTypekitPlugin::loadOperators() {
-    loadPtimeOperators();
-    loadTimeDurationOperators();
-    return true;
-}
-
-bool BoostDateTimeTypekitPlugin::loadGlobals() {
-    loadSpecialValuesGlobals();
-    loadPtimeGlobals();
-    loadTimeDurationGlobals();
-    return true;
-}
-
-/**
- * The single global instance of the boostDateTime Typekit.
- */
-BoostDateTimeTypekitPlugin boostDateTimeTypekit;
-
-}  // namespace boost_date_time_typekit
-ORO_TYPEKIT_PLUGIN(boost_date_time_typekit::BoostDateTimeTypekitPlugin)
+ORO_TYPEKIT_PLUGIN( boost_date_time_typekit::corba::BoostDateTimeCorbaTransportPlugin )
