@@ -59,12 +59,13 @@ struct BoostDateTimeCorbaTestSetup {
 };
 
 template<typename Predicate>
-bool waitFor(double timeout, Predicate pred) {
+bool waitFor(double timeout_s, Predicate pred) {
     const auto ts = os::TimeService::Instance();
-    os::TimeService::ticks start = ts->getTicks();
+    const auto sleep_time_us = static_cast<useconds_t>((timeout_s * 1e6) / 10);
+    const auto start = ts->getTicks();
     while (!pred()) {
-        if (ts->secondsSince(start) >= timeout) return false;
-        usleep(static_cast<useconds_t>((timeout / 10) * 100));
+        if (ts->secondsSince(start) >= timeout_s) return false;
+        usleep(sleep_time_us);
     }
     return true;
 }
