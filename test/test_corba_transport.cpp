@@ -69,9 +69,7 @@ bool waitFor(double timeout, Predicate pred) {
     return true;
 }
 
-BOOST_AUTO_TEST_SUITE(
-    BoostDateTimeCorbaTest,
-    *boost::unit_test::fixture<BoostDateTimeCorbaTestSetup>());
+BOOST_GLOBAL_FIXTURE(BoostDateTimeCorbaTestSetup);
 
 BOOST_AUTO_TEST_CASE(RemoteConnectionPtime)
 {
@@ -129,8 +127,6 @@ BOOST_AUTO_TEST_CASE(RemoteConnectionPtime)
         BOOST_CHECK_EQUAL(read_sample, write_sample);
     }
 }
-
-BOOST_AUTO_TEST_SUITE_END()
 
 int ORO_main(int argc, char* argv[]) {
     TaskContextServer::InitOrb(argc,argv);
