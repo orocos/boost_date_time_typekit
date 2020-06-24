@@ -46,6 +46,10 @@ endif()
 
 orocos_generate_package()
 
+## Testing
+if(DEFINED CATKIN_ENABLE_TESTING)
+  set(BUILD_TESTING ${CATKIN_ENABLE_TESTING})
+endif()
 include(CTest)
 if(BUILD_TESTING)
   add_subdirectory(test)
