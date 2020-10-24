@@ -113,8 +113,8 @@ BOOST_AUTO_TEST_CASE(RemoteConnectionPtime)
     }
 
     const std::initializer_list<boost::posix_time::time_duration> time_duration_samples{
-      boost::posix_time::seconds(42.42),
-      boost::posix_time::seconds(-42.42),
+      boost::posix_time::milliseconds(42420),
+      boost::posix_time::milliseconds(-42420),
       boost::posix_time::microseconds(-1),
       boost::posix_time::microseconds(-2),
       boost::posix_time::not_a_date_time,
